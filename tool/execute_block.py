@@ -6,6 +6,7 @@ from execute_instruction import *
 from values import get_params, initialize_params, print_params
 from values import MyGlobals, clear_globals
 from misc import *
+import traceback
 
 
 
@@ -177,8 +178,9 @@ def execute_one_block( ops , stack , pos , trace, storage, mmemory, data, config
                             execute_one_block(ops,stack2,   pos + 1,    trace2, storage2,   mmemory2, data2, configurations,    search_op, search_function, jumpdepth+1, calldepth, debug, read_from_blockchain )
 
 
-                    except Exception as e:
-                        print ("Exception: "+str(e))
+                    except Exception:
+                        e = traceback.format_exc()
+                        print ("Exception: "+e)
 
                     MyGlobals.s.pop()
 
@@ -228,8 +230,9 @@ def execute_one_block( ops , stack , pos , trace, storage, mmemory, data, config
                             execute_one_block(ops,stack2,   new_position,   trace2, storage2,   mmemory2, data2, configurations,    search_op, search_function,  jumpdepth, calldepth, debug, read_from_blockchain )
 
 
-                    except Exception as e:
-                        print ("Exception: "+str(e))
+                    except Exception:
+                        e = traceback.format_exc()
+                        print ("Exception: "+e)
 
                     MyGlobals.s.pop()
                 
